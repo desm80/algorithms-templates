@@ -1,3 +1,4 @@
+# ID 80941592
 from typing import List
 
 
@@ -34,7 +35,9 @@ def read_input() -> List[int]:
     return numbers
 
 
-# numbers = read_input()
-# print(" ".join(map(str, get_distance(numbers))))
-print(" ".join(map(str, get_distance([1,2,3,0,4,5,6,7,78,0,34,35,56,1,22,
-33]))))
+if __name__ == '__main__':
+    numbers = read_input()
+    print(" ".join(map(str, get_distance(numbers))))
+
+# print(" ".join(map(str, get_distance([1,2,3,0,4,5,6,7,78,0,34,35,56,1128,22,
+# 33]))))
