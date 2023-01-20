@@ -12,16 +12,21 @@
 #
 # c = sum(matrix, [])
 # print(c)
+#
+# a = ['1234', '..34', '98.2', '23.1', ]
+# result = []
+# for string in a:
+#    result.append(list(string))
+# result2 = sum(result, [])
+# i = result2.count('2')
+#
+# print(result2)
+# print(i)
 
-a = ['1234', '..34', '98.2', '23.1', ]
-result = []
-for string in a:
-   result.append(list(string))
-result2 = sum(result, [])
-i = result2.count('2')
-
-print(result2)
-print(i)
+n = int(input())
+# numbers = list(map(int, input().strip().split()))
+numbers = [int(input()) for i in range(n)]
+print(numbers)
 
 
 

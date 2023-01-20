@@ -1,4 +1,4 @@
-# ID 80941592
+# ID 81032442
 from typing import List
 
 
@@ -24,20 +24,15 @@ def get_distance(numbers: List[int]) -> List[int]:
     до пустых участков."""
     get_straight = get_result(numbers, 0, len(numbers), 1)
     get_backwards = get_result(numbers, -1, -(len(numbers) + 1), -1)
-    result = map(min, zip(get_straight, get_backwards[::-1]))
-    return result
+    return [min(item) for item in zip(get_straight, get_backwards[::-1])]
 
 
 def read_input() -> List[int]:
     """Чтение ввода со списком участков."""
     n = int(input())
-    numbers = list(map(int, input().strip().split()))
-    return numbers
+    return [int(i) for i in input().strip().split()]
 
 
 if __name__ == '__main__':
     numbers = read_input()
-    print(" ".join(map(str, get_distance(numbers))))
-
-# print(" ".join(map(str, get_distance([1,2,3,0,4,5,6,7,78,0,34,35,56,1128,22,
-# 33]))))
+    print(*get_distance(numbers))
