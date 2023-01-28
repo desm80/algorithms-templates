@@ -2,22 +2,14 @@ from typing import Tuple
 
 
 def get_sum(first_number: str, second_number: str) -> str:
-    # if len(first_number) >= len(second_number):
-    #     digit = len(first_number)
-    # else:
-    #     digit = len(second_number)
-
     digit = max(len(first_number), len(second_number))
-
     a = len(first_number) - len(second_number)
     if a > 0:
         second_number = '0' * abs(a) + second_number
     else:
         first_number = '0' * abs(a) + first_number
-
     result = ''
     in_mind = 0
-
     for i in range(-1, -(digit) - 1, -1):
         sum = int(first_number[i]) + int(second_number[i]) + in_mind
         if sum == 0:

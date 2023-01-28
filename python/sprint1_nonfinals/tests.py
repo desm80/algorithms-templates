@@ -23,10 +23,10 @@
 # print(result2)
 # print(i)
 
-n = int(input())
-# numbers = list(map(int, input().strip().split()))
-numbers = [int(input()) for i in range(n)]
-print(numbers)
+# n = int(input())
+# # numbers = list(map(int, input().strip().split()))
+# numbers = [int(input()) for i in range(n)]
+# print(numbers)
 
 
 
