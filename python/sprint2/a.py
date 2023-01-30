@@ -2,8 +2,8 @@ from typing import List
 
 
 def transponse_matrix(matrix: List[List[int]]) -> List[List[int]]:
-    matrix = zip(*matrix)
-    return [list(row) for row in matrix]
+    trans_matrix = zip(*matrix)
+    return [list(row) for row in trans_matrix]
 
 
 def read_input() -> List[List[int]]:
