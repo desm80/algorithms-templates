@@ -6,6 +6,9 @@ class Node:
         self.value = value
         self.next = next
 
+    def __str__(self):
+        return self.value
+
 
 class Queue:
     def __init__(self):
@@ -17,6 +20,8 @@ class Queue:
         return self.size == 0
 
     def get(self):
+        if self.is_empty():
+            return None
         if self.head != self.tail:
             # Has at least two elements
             res = self.head
@@ -63,7 +68,10 @@ def solution(commands):
         if len(row) == 2:
             queue.put(int(row[1]))
         if len(row) == 1 and row[0] == 'get':
-            print(queue.get().item)
+            if queue.get():
+                print(queue.get().value)
+            else:
+                print('error')
         if len(row) == 1 and row[0] == 'size':
             print(queue.size)
 
