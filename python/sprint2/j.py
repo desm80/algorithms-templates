@@ -42,6 +42,18 @@ class Queue:
     def size(self):
         return self.size
 
+    def __iter__(self):
+        self.cur = self.head
+        return self
+
+    def __next__(self):
+        try:
+            temp = self.cur
+            self.cur = self.cur.next
+            return temp
+        except AttributeError as e:
+            raise StopIteration
+
 
 def solution(commands):
     queue = Queue()
