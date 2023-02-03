@@ -21,27 +21,51 @@ class Queue:
 
     def get(self):
         if self.is_empty():
-            return None
-        if self.head != self.tail:
-            # Has at least two elements
-            res = self.head
-            self.head = self.head.next
+            return 'error'
+        # if self.head != self.tail:
+        #     # Has at least two elements
+        #     res = self.head
+        #     self.head = self.head.next
+        #     self.size -= 1
+        #     return res
+        #     # Has one or zero element
+        # res = self.head
+        # self.head = None
+        # self.tail = None
+        # self.size -= 1
+        # return res
+        if self.size == 1:
+            x = self.head
+            self.head = None
+            self.tail = None
             self.size -= 1
-            return res
-            # Has one or zero element
-        res = self.head
-        self.head = None
-        self.tail = None
+            return x
+        if self.size == 2:
+            x = self.head
+            self.head = self.tail
+            self.size -= 1
+            return x
+        x = self.head
+        self.head = self.tail.next.next
+        self.tail.next = self.head
         self.size -= 1
-        return res
+        return x
 
     def put(self, x):
         node = Node(x)
-        if not self.tail:
+        # if not self.tail:
+        #     self.head = node
+        # else:
+        #     self.tail.next = node
+        # self.tail = node
+        # self.size += 1
+        if self.size == 0:
             self.head = node
+            self.tail = self.head
         else:
             self.tail.next = node
-        self.tail = node
+            self.tail.next.next = self.head
+            self.tail = self.tail.next
         self.size += 1
 
     def size(self):
@@ -68,10 +92,11 @@ def solution(commands):
         if len(row) == 2:
             queue.put(int(row[1]))
         if len(row) == 1 and row[0] == 'get':
-            if queue.get():
-                print(queue.get().value)
-            else:
+            a = queue.get()
+            if a == 'error':
                 print('error')
+                continue
+            print(queue.get().value)
         if len(row) == 1 and row[0] == 'size':
             print(queue.size)
 
@@ -85,5 +110,16 @@ def read_input() -> [List[List[str]]]:
 
 
 if __name__ == '__main__':
-    commands = read_input()
-    solution(commands)
+    # commands = read_input()
+    # solution(commands)
+    queue = Queue()
+    queue.put(-34)
+    queue.put(-23)
+    queue.get()
+    queue.size()
+    
+
+
+
+
+
