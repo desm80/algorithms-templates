@@ -1,3 +1,4 @@
+# 81809126
 from typing import List
 
 
@@ -14,35 +15,39 @@ class Deque:
 
     def push_back(self, value):
         if self.size != self.max_n:
+            if self.queue[self.tail]:
+                self.tail = (self.tail + 1) % self.max_n
             self.queue[self.tail] = value
-            self.tail = (self.tail + 1) % self.max_n
             self.size += 1
         else:
-            print('error')
+            return 'error'
 
     def push_front(self, value):
         if self.size != self.max_n:
-            self.head = (self.head - 1) % self.max_n
+            if self.queue[self.head]:
+                self.head = (self.head - 1) % self.max_n
             self.queue[self.head] = value
             self.size += 1
         else:
-            print('error')
+            return 'error'
 
     def pop_front(self):
         if self.is_empty():
-            print('error')
+            return 'error'
         x = self.queue[self.head]
         self.queue[self.head] = None
-        self.head = (self.head + 1) % self.max_n
+        if self.size > 1:
+            self.head = (self.head + 1) % self.max_n
         self.size -= 1
         return x
 
     def pop_back(self):
         if self.is_empty():
-            print('error')
+            return 'error'
         x = self.queue[self.tail]
         self.queue[self.tail] = None
-        self.tail = (self.tail - 1) % self.max_n
+        if self.size > 1:
+            self.tail = (self.tail - 1) % self.max_n
         self.size -= 1
         return x
 
@@ -50,16 +55,9 @@ class Deque:
 def solution(commands, max_size):
     queue = Deque(max_size)
     for row in commands:
-        if len(row) == 0 or len(row) >= 3:
-            continue
-        # if len(row) == 2:
-        #     queue.push(int(row[1]))
-        # if len(row) == 1 and row[0] == 'pop':
-        #     print(queue.pop())
-        # if len(row) == 1 and row[0] == 'peek':
-        #     print(queue.peek())
-        # if len(row) == 1 and row[0] == 'size':
-        #     print(queue.size)
+        res = getattr(queue, row.pop(0))(*row)
+        if res:
+            print(res)
 
 
 def read_input() -> [List[List[str]]]:
