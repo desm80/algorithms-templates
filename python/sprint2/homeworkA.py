@@ -53,6 +53,7 @@ class Deque:
 
 
 def solution(commands, max_size):
+    """Выполнение команд из списка и вывод результата, при наличии."""
     queue = Deque(max_size)
     for row in commands:
         res = getattr(queue, row.pop(0))(*row)
@@ -61,6 +62,7 @@ def solution(commands, max_size):
 
 
 def read_input() -> [List[List[str]]]:
+    """Чтение списка команд и максимального значения очереди."""
     n = int(input())
     m = int(input())
     commands = []
