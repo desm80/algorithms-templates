@@ -14,7 +14,7 @@ class Stack:
         self.items.append(item)
 
     def pop(self):
-        """Получение элемента из стэка"""
+        """Получение элемента из стэка."""
         return self.items.pop()
 
 
