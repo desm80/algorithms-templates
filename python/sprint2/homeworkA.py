@@ -11,9 +11,11 @@ class Deque:
         self.size = 0
 
     def is_empty(self):
+        """Проверка очереди на наличие элементов."""
         return self.size == 0
 
     def push_back(self, value):
+        """Добавление элемента в конец очереди."""
         if self.size != self.max_n:
             if self.queue[self.tail]:
                 self.tail = (self.tail + 1) % self.max_n
@@ -23,6 +25,7 @@ class Deque:
             return 'error'
 
     def push_front(self, value):
+        """Добавление элемента в начало очереди."""
         if self.size != self.max_n:
             if self.queue[self.head]:
                 self.head = (self.head - 1) % self.max_n
@@ -32,6 +35,7 @@ class Deque:
             return 'error'
 
     def pop_front(self):
+        """Получение первого элемента очереди."""
         if self.is_empty():
             return 'error'
         x = self.queue[self.head]
@@ -42,6 +46,7 @@ class Deque:
         return x
 
     def pop_back(self):
+        """Получение последнего элемента очереди."""
         if self.is_empty():
             return 'error'
         x = self.queue[self.tail]
