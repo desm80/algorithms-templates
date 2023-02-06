@@ -1,63 +1,65 @@
 from typing import List
 
 
-class Node:
-    def __init__(self, value, next=None):
-        self.value = value
-        self.next = next
-
-    def __str__(self):
-        return self.value
-
-
 class Queue:
+    class Node:
+        def __init__(self, value=None, next=None):
+            self.value = value
+            self.next = next
+
+        def __str__(self):
+            return self.value
+
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
+        self.head = self.Node()
+        self.tail = self.Node()
+        self.qsize = 0
 
     def is_empty(self):
         return self.size == 0
 
     def get(self):
         if self.is_empty():
-            return None
-        if self.head != self.tail:
-            # Has at least two elements
-            res = self.head
-            self.head = self.head.next
-            self.size -= 1
-            return res
-            # Has one or zero element
-        res = self.head
-        self.head = None
-        self.tail = None
-        self.size -= 1
-        return res
+            return 'error'
+        if self.qsize == 1:
+            removed = self.head
+            self.__init__()
+            return removed.value
+        if self.qsize == 2:
+            removed = self.head
+            self.head = self.tail
+            self.qsize -= 1
+            return removed.value
+        removed = self.head
+        self.head = self.tail.next_item.next_item
+        self.tail.next_item = self.head
+        self.qsize -= 1
+        return removed.value
 
     def put(self, x):
-        node = Node(x)
-        if not self.tail:
-            self.head = node
+        if self.is_empty():
+            self.head = self.Node(value=x)
+            self.tail = self.head
         else:
-            self.tail.next = node
-        self.tail = node
-        self.size += 1
+            self.tail.next_item = self.Node(value=x)
+            self.tail.next_item.next_item = self.head
+            self.tail = self.tail.next_item
+        self.qsize += 1
 
     def size(self):
-        return self.size
+        return self.qsize
 
-    def __iter__(self):
-        self.cur = self.head
-        return self
-
-    def __next__(self):
-        try:
-            temp = self.cur
-            self.cur = self.cur.next
-            return temp
-        except AttributeError as e:
-            raise StopIteration
+    # def __iter__(self):
+    #     self.cur = self.head
+    #     return self
+    #
+    # def __next__(self):
+    #     try:
+    #         temp = self.cur
+    #         self.cur = self.cur.next
+    #         return temp
+    #     except AttributeError as e:
+    #         raise StopIteration
 
 
 def solution(commands):
@@ -68,12 +70,9 @@ def solution(commands):
         if len(row) == 2:
             queue.put(int(row[1]))
         if len(row) == 1 and row[0] == 'get':
-            if queue.get():
-                print(queue.get().value)
-            else:
-                print('error')
+            print(queue.get())
         if len(row) == 1 and row[0] == 'size':
-            print(queue.size)
+            print(queue.size())
 
 
 def read_input() -> [List[List[str]]]:
