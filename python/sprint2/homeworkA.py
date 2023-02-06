@@ -1,4 +1,4 @@
-# 81809126
+# 81891701
 from typing import List
 
 
@@ -22,7 +22,7 @@ class Deque:
             self.queue[self.tail] = value
             self.size += 1
         else:
-            return 'error'
+            raise Exception
 
     def push_front(self, value):
         """Добавление элемента в начало очереди."""
@@ -32,12 +32,12 @@ class Deque:
             self.queue[self.head] = value
             self.size += 1
         else:
-            return 'error'
+            raise Exception
 
     def pop_front(self):
         """Получение первого элемента очереди."""
         if self.is_empty():
-            return 'error'
+            raise Exception
         x = self.queue[self.head]
         self.queue[self.head] = None
         if self.size > 1:
@@ -48,7 +48,7 @@ class Deque:
     def pop_back(self):
         """Получение последнего элемента очереди."""
         if self.is_empty():
-            return 'error'
+            raise Exception
         x = self.queue[self.tail]
         self.queue[self.tail] = None
         if self.size > 1:
@@ -61,18 +61,21 @@ def solution(commands, max_size):
     """Выполнение команд из списка и вывод результата, при наличии."""
     queue = Deque(max_size)
     for row in commands:
-        res = getattr(queue, row.pop(0))(*row)
-        if res:
-            print(res)
+        try:
+            res = getattr(queue, row.pop(0))(*row)
+            if res:
+                print(res)
+        except:
+            print('error')
 
 
 def read_input() -> [List[List[str]]]:
     """Чтение списка команд и максимального значения очереди."""
-    n = int(input())
-    m = int(input())
+    n = int(input("n>"))
+    m = int(input("m>"))
     commands = []
     for i in range(n):
-        commands.append(list(map(str, input().strip().split())))
+        commands.append(list(map(str, input(">").strip().split())))
     return commands, m
 
 
