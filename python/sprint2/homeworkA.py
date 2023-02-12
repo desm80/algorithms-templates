@@ -71,11 +71,11 @@ def solution(commands, max_size):
 
 def read_input() -> [List[List[str]]]:
     """Чтение списка команд и максимального значения очереди."""
-    n = int(input("n>"))
-    m = int(input("m>"))
+    n = int(input())
+    m = int(input())
     commands = []
     for i in range(n):
-        commands.append(list(map(str, input(">").strip().split())))
+        commands.append(list(map(str, input().strip().split())))
     return commands, m
 
 
