@@ -4,6 +4,7 @@ PATTERN = {
 }
 RESULT_LIST = []
 
+
 def gen_binary(n, prefix):
     if n == 0:
         LIST_OF_STRINGS.append(prefix)
