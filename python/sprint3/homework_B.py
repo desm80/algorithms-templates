@@ -22,7 +22,7 @@ class Participant:
         return self.name
 
 
-def partition(participants, low, high) -> None:
+def partition(participants: List[Participant], low: int, high: int) -> None:
     """Сортировка Хоара без использования дополнительной памяти."""
     pivot = participants[(low + high) // 2]
     i = low - 1
@@ -39,7 +39,7 @@ def partition(participants, low, high) -> None:
         participants[i], participants[j] = participants[j], participants[i]
 
 
-def quick_sort(participants) -> None:
+def quick_sort(participants: List[Participant]) -> None:
     """Рекурсивная функция для вызова быстрой сортировки."""
     def _quick_sort(items, low, high):
         if low < high:
