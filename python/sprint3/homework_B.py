@@ -22,7 +22,7 @@ class Participant:
         return self.name
 
 
-def partition(participants: List[Participant], low: int, high: int) -> None:
+def partition(participants: List[Participant], low: int, high: int) -> int:
     """Сортировка Хоара без использования дополнительной памяти."""
     pivot = participants[(low + high) // 2]
     i = low - 1
