@@ -64,34 +64,71 @@
 
 
 
-def merge_sort(array):
-    if len(array) == 1:  # базовый случай рекурсии
-        return array
-    # запускаем сортировку рекурсивно на левой половине
-    left = merge_sort(array[0:int(len(array)/2)])
-    # запускаем сортировку рекурсивно на правой половине
-    right = merge_sort(array[int(len(array)/2):len(array)])
-    # заводим массив для результата сортировки
-    result = [] * len(array)
-    # сливаем результаты
-    l, r = 0, 0
-    while l < len(left) and r < len(right):
-        # выбираем, из какого массива забрать минимальный элемент
-        if left[l] <= right[r]:
-            result.append(left[l])
-            l += 1
-        else:
-            result.append(right[r])
-            r += 1
-    # Если один массив закончился раньше, чем второй, то
-    # переносим оставшиеся элементы второго массива в результирующий
-    while l < len(left):
-        result.append(left[l])   # перенеси оставшиеся элементы left в result
-        l += 1
-    while r < len(right):
-        result.append(right[r])  # перенеси оставшиеся элементы right в result
-        r += 1
-    return result
+# def merge_sort(array):
+#     if len(array) == 1:  # базовый случай рекурсии
+#         return array
+#     # запускаем сортировку рекурсивно на левой половине
+#     left = merge_sort(array[0:int(len(array)/2)])
+#     # запускаем сортировку рекурсивно на правой половине
+#     right = merge_sort(array[int(len(array)/2):len(array)])
+#     # заводим массив для результата сортировки
+#     result = [] * len(array)
+#     # сливаем результаты
+#     l, r = 0, 0
+#     while l < len(left) and r < len(right):
+#         # выбираем, из какого массива забрать минимальный элемент
+#         if left[l] <= right[r]:
+#             result.append(left[l])
+#             l += 1
+#         else:
+#             result.append(right[r])
+#             r += 1
+#     # Если один массив закончился раньше, чем второй, то
+#     # переносим оставшиеся элементы второго массива в результирующий
+#     while l < len(left):
+#         result.append(left[l])   # перенеси оставшиеся элементы left в result
+#         l += 1
+#     while r < len(right):
+#         result.append(right[r])  # перенеси оставшиеся элементы right в result
+#         r += 1
+#     return result
+#
+#
+# print(merge_sort([1,6,3,2,8,4]))
 
 
-print(merge_sort([1,6,3,2,8,4]))
+# fruits = ["яблоко", "яблоко", "груша", "яблоко", "слива"]
+# fruit_count = {}  # создаём пустой ассоциативный массив
+# for fruit in fruits:
+#     if not has_key(fruit_count, fruit):  # если в отображении нет такого ключа
+#         fruit_count[fruit] = 0   # заводим счётчик с таким ключом
+#     fruit_count[fruit] += 1
+#     # увеличиваем счётчик:
+#     set(key, get(key) + 1)
+
+#########################
+class Map:
+    def __init__(self):
+        self.pairs = []
+
+    def get(self, key):
+        for pair in self.pairs:
+            if pair.keys() == key:
+                return pair.values()
+        return None
+
+    def set(self, key, value):
+        for pair in self.pairs:
+            if pair.keys() == key:  # пара с указанным ключом найдена
+                # обновить значение в найденной паре
+                pair.value = value
+                return
+        self.pairs.append({key: value})
+
+
+a = Map({"яблоко": 3}, {"груша": 1}, {"слива": 1})
+# a.set('apple', 3)
+print(a)
+
+# a = [{"яблоко": 3}, {"груша": 1}, {"слива": 1}]
+# print(*a[0].keys())
